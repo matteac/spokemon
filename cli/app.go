@@ -1,6 +1,8 @@
 package cli
 
 import (
+	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -26,13 +28,32 @@ func (a *App) ParseArgs(args []string) {
   for i, arg := range args {
     switch arg {
     case "-n", "--name":
-      a.Name = args[i+1]
+      if len(args) > i+1 {
+        a.Name = args[i+1]
+      } else {
+        fmt.Println("Missing argument for --name")
+        os.Exit(1)
+      }
     case "-t", "--types":
-      a.Types = strings.Split(args[i+1], ",")
+      if len(args) > i+1 {
+        a.Types = strings.Split(args[i+1], ",")
+      } else {
+        fmt.Println("Missing argument for --types")
+        os.Exit(1)
+      }
     case "-g", "--generation":
-      a.Generation, _ = strconv.Atoi(args[i+1])
+      if len(args) > i+1 {
+        a.Generation, _ = strconv.Atoi(args[i+1])
+      } else {
+        fmt.Println("Missing argument for --generation")
+        os.Exit(1)
+      }
     case "-l", "--legendary":
-      a.Legendary, _ = strconv.ParseBool(args[i+1])
+      if len(args) > i+1 {
+        a.Legendary, _ = strconv.ParseBool(args[i+1])
+      } else {
+        a.Legendary = true
+      }
     }
   }
 }
