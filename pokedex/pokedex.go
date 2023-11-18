@@ -2,7 +2,6 @@ package pokedex
 
 import (
 	"encoding/csv"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -95,18 +94,12 @@ func (p Pokedex) ReadCSV(path string) Pokedex {
     })
 
   }
-  fmt.Println("Pokedex populated with", len(pokemons), "pokemons")
   return pokemons
 }
 
 var Pokedex_ = Pokedex{}
 
-
-var Pokemon = poke.Pokemon{
-  Types: []poke.PokemonType{
-    poke.Grass,
-  },
-}
+var Pokemon = poke.Pokemon{}
 
 var Results = []poke.Pokemon{}
 

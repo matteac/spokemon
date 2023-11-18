@@ -66,3 +66,23 @@ func (p *Pokemon) HasTypes(t []PokemonType) bool {
 	}
 	return false
 }
+
+func (p *Pokemon) String() string {
+  str_types := []string{}
+  for _, type_ := range p.Types {
+    str_types = append(str_types, type_.String())
+  }
+  str := "-----------------------------------\n"
+  str += "\tName: " + p.Name + "\n"
+  str += "\tTypes: " + strings.Join(str_types, ",") + "\n"
+  str += "\tHP: " + strconv.Itoa(p.HP) + "\n"
+  str += "\tATK: " + strconv.Itoa(p.Attack) + "\n"
+  str += "\tDEF: " + strconv.Itoa(p.Defense)
+  str += "\tSP.ATK: " + strconv.Itoa(p.SpecialAttack) + "\n"
+  str += "\tSP.DEF: " + strconv.Itoa(p.SpecialDefense) + "\n"
+  str += "\tSpeed: " + strconv.Itoa(p.Speed) + "\n"
+  str += "\tGeneration: " + strconv.Itoa(p.Generation) + "\n"
+  str += "\tLegendary: " + p.LegendaryString() + "\n"
+  str += "-----------------------------------\n"
+  return str
+}
