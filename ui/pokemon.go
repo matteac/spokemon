@@ -2,7 +2,9 @@ package ui
 
 import (
 	"strconv"
-  "github.com/gdamore/tcell/v2"
+	"strings"
+
+	"github.com/gdamore/tcell/v2"
 	pokedex "github.com/matteac/spokemon/pokedex"
 	poke "github.com/matteac/spokemon/pokemon"
 	"github.com/rivo/tview"
@@ -64,11 +66,16 @@ var Form = tview.NewForm().
   SetCell(0, 9, tview.NewTableCell("Legendary"))
     pokedex.Results = pokedex.Pokedex_.Filter(pokedex.Pokemon)
     for i, pokemon := range pokedex.Results {
-      i := i + 1
+      i:=i+1
+      types_strings := []string{}
+      for _, type_ := range pokemon.Types {
+        types_strings = append(types_strings, type_.String())
+      }
+
       Table.
         SetCell(i, 0, tview.NewTableCell(pokemon.Name))
       Table.
-        SetCell(i, 1, tview.NewTableCell(pokemon.Types[0].String()))
+        SetCell(i, 1, tview.NewTableCell(strings.Join(types_strings, ", ")))
       Table.
         SetCell(i, 2, tview.NewTableCell(strconv.Itoa(pokemon.HP)))
       Table.
