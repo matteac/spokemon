@@ -11,6 +11,17 @@ git clone https://github.com/matteac/spokemon.git
 # Move to the project directory
 cd spokemon
 
+# Install dependencies
+go get
+
+# Build the project
+go build
+
 # And run it
-go run main.go
+./spokemon
+```
+or 
+```bash
+# See --help
+./spokemon --name pikachu --type electric
 ```

@@ -5,6 +5,9 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // declare args for the cli
@@ -36,9 +39,9 @@ func (a *App) ParseArgs(args []string) {
       }
     case "-t", "--types":
       if len(args) > i+1 {
-        a.Types = strings.Split(args[i+1], ",")
+        a.Types = append(a.Types, cases.Title(language.English).String(strings.ToLower(args[i+1])))
       } else {
-        fmt.Println("Missing argument for --types")
+        fmt.Println("Missing argument for --type")
         os.Exit(1)
       }
     case "-g", "--generation":
@@ -63,7 +66,7 @@ func (a *App) HelpMessage() string {
   str += "Usage: spokemon [options]\n"
   str += "Options:\n"
   str += "  -n, --name\t\t<STRING>\tName of the pokemon\n"
-  str += "  -t, --types\t\t<STRING>\tTypes of the pokemon, separated by commas\n"
+  str += "  -t, --type\t\t<STRING>\tType of the pokemon\n"
   str += "  -g, --generation\t<INT>\t\tGeneration of the pokemon\n"
   str += "  -l, --legendary\t<BOOL>\t\tIs the pokemon legendary?\n"
   str += "  -h, --help\t\t\t\tPrint this help message\n"
