@@ -77,7 +77,7 @@ func (p *Pokemon) String() string {
   str += "\tTypes: " + strings.Join(str_types, ",") + "\n"
   str += "\tHP: " + strconv.Itoa(p.HP) + "\n"
   str += "\tATK: " + strconv.Itoa(p.Attack) + "\n"
-  str += "\tDEF: " + strconv.Itoa(p.Defense)
+  str += "\tDEF: " + strconv.Itoa(p.Defense) + "\n"
   str += "\tSP.ATK: " + strconv.Itoa(p.SpecialAttack) + "\n"
   str += "\tSP.DEF: " + strconv.Itoa(p.SpecialDefense) + "\n"
   str += "\tSpeed: " + strconv.Itoa(p.Speed) + "\n"
